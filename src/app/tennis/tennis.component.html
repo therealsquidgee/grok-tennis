@@ -1,0 +1,12 @@
+<div class="main-container">
+  <main>
+    <h1>Grok Tennis</h1>
+    <div class="game-container">
+      <app-player [player]="players[0]" (incEvent)="onPointScore($event)"></app-player>
+      <div class="vl"></div>
+      <app-player [player]="players[1]" (incEvent)="onPointScore($event)"></app-player>
+    </div>
+    <p *ngIf="!winMessage">{{currentScore}}</p>
+    <p *ngIf="winMessage">{{winMessage}}</p>
+  </main>
+</div>

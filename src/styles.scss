@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --grok-blue: #085cbc;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+p {
+  color: var(--grok-blue);
+  font-family: Poppins, sans-serif;
+  margin: 0;
+}

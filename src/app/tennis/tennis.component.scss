@@ -1,0 +1,51 @@
+ div.main-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid grey;
+    max-width: 1024px;
+
+    h1 {
+      margin: 30px 0 30px;
+    }
+
+    div.game-container {
+      display: flex;
+      height: 180px;
+      justify-content: space-between;
+      div.vl {
+        height: 100%;
+        background-color: grey;
+        width: 1px;
+        align-self: center;
+      }
+    }
+
+    p {
+      font-size: 2em;
+      margin: 30px 0 30px;
+      white-space: pre;
+      font-weight: bold;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  div.main-container {
+    main {
+      padding: 10vw;
+      div.game-container {
+        width: 60vw;
+      }
+    }
+  }
+}

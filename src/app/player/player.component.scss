@@ -1,0 +1,25 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px 0;
+
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  button {
+    border-radius: 50%;
+    color: white;
+    font-size: 48px;
+    text-align: center;
+    border: none;
+    background-color: var(--grok-blue);
+    width: 96px;
+    height: 96px;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+}
