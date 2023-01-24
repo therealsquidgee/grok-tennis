@@ -7,6 +7,6 @@ import { Player } from '../models/Player';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
-  @Input() player = new Player(-1, 'Undefined');
+  @Input() player = new Player();
   @Output() incEvent = new EventEmitter<Player>();
 }

@@ -19,11 +19,24 @@ export class TennisComponent implements OnInit {
 
   currentScore = ' 0 - 0 ';
   winMessage = '';
+  currentScoringPlayer = new Player();
+
+  // animation controls
+  showBall = false;
+  showAnimation = false;
+  reverseAnimation = false;
 
   ngOnInit(): void {
+    this.reset();
+  }
+
+  reset() {
     this.players.forEach(player => {
       this.scores[player.id] = 0;
-    })
+    });
+
+    this.currentScore = ' 0 - 0 ';
+    this.winMessage = '';
   }
 
   /**
@@ -34,7 +47,7 @@ export class TennisComponent implements OnInit {
    * 
    * @param player 
    */
-  onPointScore(player: Player) {
+  async onPointScore(player: Player) {
     // Game is over if win message set
     if(this.winMessage) {
       return;
@@ -44,6 +57,9 @@ export class TennisComponent implements OnInit {
     if(isNaN(this.scores[player.id])) {
       throw new Error('Attempted to increment invalid player.');
     }
+
+    this.playSound(player);
+    await this.handleAnimation(player);
 
     // Increment score state, check score difference and if we are in deuce
     this.scores[player.id] += 1;
@@ -65,6 +81,35 @@ export class TennisComponent implements OnInit {
     // Otherwise, scoring player has won.
     else {
       this.winMessage = `${player.name} Wins!`;
+      const audio = new Audio(`/assets/audio/crowd_cheer.mp3`);
+      audio.play();
     }
+  }
+
+  handleAnimation(player: Player) {
+    return new Promise((resolve => {
+      this.currentScoringPlayer = player;
+      this.showBall = true;
+      this.reverseAnimation = player.id === 1;
+  
+      const ballShowDuration = 500;
+      setTimeout(() => {
+        this.showAnimation = true;
+        const animationDuration = 1000;
+        setTimeout(() => {
+          this.showBall = false;
+          resolve(null);
+          setTimeout(() => {
+            this.showAnimation = false;
+          }, ballShowDuration);
+        }, animationDuration);
+      }, ballShowDuration);
+    }));
+  }
+
+  playSound(player: Player) {
+    const audioSrc = player.id === 0 ? 'tennis_hit' : 'tennis_return';
+    const audio = new Audio(`/assets/audio/${audioSrc}.mp3`);
+    audio.play();
   }
 }

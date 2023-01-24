@@ -1,5 +1,5 @@
 export class Player {
-  constructor(id:number, name:string) {
+  constructor(id:number = -1, name:string = 'Undefined') {
     this.id = id;
     this.name = name;
   }

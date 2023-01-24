@@ -5,8 +5,16 @@
       <app-player [player]="players[0]" (incEvent)="onPointScore($event)"></app-player>
       <div class="vl"></div>
       <app-player [player]="players[1]" (incEvent)="onPointScore($event)"></app-player>
+      <div class="ball" 
+      [ngClass]="{
+        show: showBall,
+        animate: showAnimation && !reverseAnimation,
+        'animate-reverse': showAnimation && reverseAnimation,
+        'player-two': reverseAnimation
+      }"></div>
     </div>
     <p *ngIf="!winMessage">{{currentScore}}</p>
     <p *ngIf="winMessage">{{winMessage}}</p>
+    <button class="restart" (click)="reset()">↺</button>
   </main>
 </div>
